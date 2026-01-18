@@ -30,6 +30,11 @@ class TestLaboratory(unittest.TestCase):
         self.assertEqual(lab.getQuantity("farines"), 0.0)
         self.assertEqual(lab.getQuantity("sucres"), 0.0)
 
+    def test_ajout_substance_connue_et_incrementation_quantite_en_stock(self):
+        
+        substances_laboratoire = Laboratory(["farine", "sucre", "lait"])
+        substances_laboratoire.add("farine", 2.5)  
+        self.assertEqual(substances_laboratoire.getQuantity("farine"), 2.5)
 
 
         
