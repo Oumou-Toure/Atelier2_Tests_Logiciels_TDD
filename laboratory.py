@@ -4,6 +4,11 @@ class Laboratory:
         self.stock = {name: 0.0 for name in substances} 
         
         self.reactions = reactions or {}
+        
+        for product, ingredients in self.reactions.items():
+            for quantity, substance in ingredients:
+                if substance not in self.substances:
+                    raise ValueError(f"la substance est inconnue dans la réaction: {substance}")
 
         for product in self.reactions:
             self.stock[product] = 0.0
