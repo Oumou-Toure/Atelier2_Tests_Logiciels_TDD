@@ -1,7 +1,12 @@
 class Laboratory: 
-    def __init__(self, substances): 
+    def __init__(self, substances, reactions=None): 
         self.substances = list(set(substances))
         self.stock = {name: 0.0 for name in substances} 
+        
+        self.reactions = reactions or {}
+
+        for product in self.reactions:
+            self.stock[product] = 0.0
         
     def getQuantity(self, substance): 
         
