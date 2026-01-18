@@ -48,6 +48,24 @@ class TestLaboratory(unittest.TestCase):
         with self.assertRaises(ValueError):
             substances_laboratoire.add("sucre", -2.0)
 
+    def test_ajout_mauvais_type_de_donnees_quantite(self):
+        
+        substances_laboratoire = Laboratory(["farine", "sucre"])
+        for q in ["deux", None, [], {}]:
+            with self.assertRaises(TypeError):
+                substances_laboratoire.add("farine", q)
+                
+    def test_initialisation_avec_reactions_ajoute_les_produits_au_stock(self):
+        
+        substances = ["farine", "sucre", "beurre", "levure", "arome"]
+        reactions = {
+            "pate à gateau": [(200, "farine"), (100, "sucre"), (50, "beurre")]
+        }
+
+        substances_laboratoire = Laboratory(substances, reactions)
+
+        self.assertEqual(substances_laboratoire.getQuantity("pate à gateau"), 0.0)
+
         
 if __name__ == '__main__':
     unittest.main()

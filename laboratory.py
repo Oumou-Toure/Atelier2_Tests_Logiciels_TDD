@@ -21,5 +21,8 @@ class Laboratory:
         
         if quantity < 0:
             raise ValueError("La quantité de la subastance que vous souhaitez ajouter ne peut pas être négative")
+        
+        if not isinstance(quantity, (int, float)):
+            raise TypeError("La quantité doit être un nombre")
     
         self.stock[substance] += quantity
