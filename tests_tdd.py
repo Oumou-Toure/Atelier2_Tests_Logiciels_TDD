@@ -23,6 +23,13 @@ class TestLaboratory(unittest.TestCase):
         
         with self.assertRaises(TypeError):
             substances_laboratoire.getQuantity(123)
+            
+    def test_getQuantity_substances_pluriels(self):
+        
+        lab = Laboratory(["farine", "sucre"])
+        self.assertEqual(lab.getQuantity("farines"), 0.0)
+        self.assertEqual(lab.getQuantity("sucres"), 0.0)
+
 
 
         
