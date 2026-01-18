@@ -1,8 +1,10 @@
 class Laboratory: 
     def __init__(self, substances): 
-        self.substances = substances 
+        self.substances = list(set(substances))
         self.stock = {name: 0.0 for name in substances} 
+        
     def getQuantity(self, substance): 
+        
         if not isinstance(substance, str):
             raise TypeError("Le nom de la substance doit être une chaîne de caractères.")
         
