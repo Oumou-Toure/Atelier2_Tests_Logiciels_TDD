@@ -65,6 +65,18 @@ class TestLaboratory(unittest.TestCase):
         substances_laboratoire = Laboratory(substances, reactions)
 
         self.assertEqual(substances_laboratoire.getQuantity("pate à gateau"), 0.0)
+        
+        
+    def test_fabriquer_reactions_avec_substances_inconnues(self):
+        
+        substances = ["farine"]
+        reactions = {
+            "pate": [(200, "sucre")] 
+        }
+
+        with self.assertRaises(ValueError):
+            Laboratory(substances, reactions)
+
 
         
 if __name__ == '__main__':
