@@ -41,6 +41,12 @@ class TestLaboratory(unittest.TestCase):
         substances_laboratoire = Laboratory(["arome", "yaourt"])
         with self.assertRaises(ValueError):
             substances_laboratoire.add("lait", 2.0)  
+            
+    def test_ajout_quantite_negative(self):
+        
+        substances_laboratoire = Laboratory(["chocolat", "sucre", "miel"])
+        with self.assertRaises(ValueError):
+            substances_laboratoire.add("sucre", -2.0)
 
         
 if __name__ == '__main__':
