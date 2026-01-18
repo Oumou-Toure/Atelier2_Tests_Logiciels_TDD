@@ -36,6 +36,11 @@ class TestLaboratory(unittest.TestCase):
         substances_laboratoire.add("farine", 2.5)  
         self.assertEqual(substances_laboratoire.getQuantity("farine"), 2.5)
 
+    def test_ajout_substance_inconnue_en_stock(self):
+        
+        substances_laboratoire = Laboratory(["arome", "yaourt"])
+        with self.assertRaises(ValueError):
+            substances_laboratoire.add("lait", 2.0)  
 
         
 if __name__ == '__main__':
