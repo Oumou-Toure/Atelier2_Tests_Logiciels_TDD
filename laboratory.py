@@ -18,4 +18,8 @@ class Laboratory:
         
         if substance not in self.stock:
             raise ValueError(f"La substance demandée est inconnue: {substance}")
+        
+        if quantity < 0:
+            raise ValueError("La quantité de la subastance que vous souhaitez ajouter ne peut pas être négative")
+    
         self.stock[substance] += quantity
