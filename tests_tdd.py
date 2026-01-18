@@ -13,6 +13,17 @@ class TestLaboratory(unittest.TestCase):
         substances_laboratoire = Laboratory(["farine", "sucre", "levure"])
         with self.assertRaises(ValueError):
             substances_laboratoire.getQuantity("lait")
+            
+    def test_mauvais_type_de_données_getQuantity_error(self):
+        
+        substances_laboratoire = Laboratory(["farine", "sucre", "levure", "oeufs"])
+        
+        with self.assertRaises(TypeError):
+            substances_laboratoire.getQuantity(None)
+        
+        with self.assertRaises(TypeError):
+            substances_laboratoire.getQuantity(123)
+
 
         
 if __name__ == '__main__':
