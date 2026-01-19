@@ -9,9 +9,11 @@ class Laboratory:
         
         self.reactions = reactions or {}
         
+        all_valid_names = set(self.substances) | set(self.reactions.keys())
+        
         for product, ingredients in self.reactions.items():
             for quantity, substance in ingredients:
-                if substance not in self.substances:
+                if substance not in all_valid_names:
                     raise ValueError(f"la substance est inconnue dans la réaction: {substance}")
 
         for product in self.reactions:
