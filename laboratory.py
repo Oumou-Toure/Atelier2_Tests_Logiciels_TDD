@@ -47,4 +47,4 @@ class Laboratory:
         if product not in self.reactions:
             raise ValueError(f"La réaction pour {product} est inconnue.")
         
-        
+       

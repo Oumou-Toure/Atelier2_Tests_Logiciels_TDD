@@ -89,6 +89,13 @@ class TestLaboratory(unittest.TestCase):
         with self.assertRaises(ValueError):
             substances_laboratoire.make("pate")  
 
+    def test_make_stock_insuffisant(self):
+        
+        substances_laboratoire = Laboratory(["farine", "sucre"], {"pate": [(200, "farine"), (100, "sucre")]})
+        substances_laboratoire.add("farine", 100)
+        substances_laboratoire.add("sucre", 200)
+        with self.assertRaises(ValueError):
+            substances_laboratoire.make("pate")  
 
 
 
