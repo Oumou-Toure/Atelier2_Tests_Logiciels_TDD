@@ -51,4 +51,9 @@ class Laboratory:
             if self.stock.get(substance, 0) < qty_needed:
                 raise ValueError(f"Stock insuffisant pour {substance}")
 
-        
+        for qty_needed, substance in self.reactions[product]:
+            self.stock[substance] -= qty_needed
+        if product not in self.stock:
+            self.stock[product] = 0.0
+        self.stock[product] += 1
+
