@@ -43,6 +43,8 @@ class Laboratory:
         self.stock[substance] += quantity
         
     
-    
+    def make(self, product):
+        if product not in self.reactions:
+            raise ValueError(f"La réaction pour {product} est inconnue.")
         
         
