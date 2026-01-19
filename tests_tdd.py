@@ -81,6 +81,15 @@ class TestLaboratory(unittest.TestCase):
     def test_initialisation_laboratoire_sans_substances(self):
         with self.assertRaises(ValueError):
             Laboratory([])
+            
+    
+    def test_make_produit_inconnu(self):
+        
+        substances_laboratoire = Laboratory(["farine", "sucre"])
+        with self.assertRaises(ValueError):
+            substances_laboratoire.make("pate")  
+
+
 
 
 

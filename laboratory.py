@@ -43,3 +43,6 @@ class Laboratory:
         self.stock[substance] += quantity
         
     
+    
+        
+        
