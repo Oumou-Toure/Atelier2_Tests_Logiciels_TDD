@@ -97,6 +97,15 @@ class TestLaboratory(unittest.TestCase):
         with self.assertRaises(ValueError):
             substances_laboratoire.make("pate")  
 
+    def test_make_decremente_ingredients_et_ajoute_produit(self):
+        
+        substances_laboratoire = Laboratory(["farine", "sucre"], {"pate": [(200, "farine"), (100, "sucre")]})
+        substances_laboratoire.add("farine", 500)
+        substances_laboratoire.add("sucre", 200)
+        substances_laboratoire.make("pate")
+        self.assertEqual(substances_laboratoire.getQuantity("farine"), 300)
+        self.assertEqual(substances_laboratoire.getQuantity("sucre"), 100)
+        self.assertEqual(substances_laboratoire.getQuantity("pate"), 1)
 
 
 

@@ -51,3 +51,4 @@ class Laboratory:
             if self.stock.get(substance, 0) < qty_needed:
                 raise ValueError(f"Stock insuffisant pour {substance}")
 
+        
