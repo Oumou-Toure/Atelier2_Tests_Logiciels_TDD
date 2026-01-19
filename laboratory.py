@@ -1,5 +1,9 @@
 class Laboratory: 
     def __init__(self, substances, reactions=None): 
+        
+        if not substances:
+            raise ValueError("Le laboratoire doit contenir au moins une substance connue.")
+        
         self.substances = list(set(substances))
         self.stock = {name: 0.0 for name in substances} 
         
