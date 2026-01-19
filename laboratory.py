@@ -43,17 +43,21 @@ class Laboratory:
         self.stock[substance] += quantity
         
     
-    def make(self, product):
+    def make(self, product, quantity=1):
+        
         if product not in self.reactions:
             raise ValueError(f"La réaction pour {product} est inconnue.")
-        
+
         for qty_needed, substance in self.reactions[product]:
-            if self.stock.get(substance, 0) < qty_needed:
+            if self.stock.get(substance, 0) < qty_needed * quantity:
                 raise ValueError(f"Stock insuffisant pour {substance}")
 
         for qty_needed, substance in self.reactions[product]:
-            self.stock[substance] -= qty_needed
+            self.stock[substance] -= qty_needed * quantity
+
         if product not in self.stock:
             self.stock[product] = 0.0
-        self.stock[product] += 1
+        self.stock[product] += quantity
+
+        return quantity
 
