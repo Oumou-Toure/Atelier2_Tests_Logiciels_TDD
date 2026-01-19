@@ -48,18 +48,27 @@ class Laboratory:
         if product not in self.reactions:
             raise ValueError(f"La réaction pour {product} est inconnue.")
 
+        max_possible = float('inf')
         for qty_needed, substance in self.reactions[product]:
-            if self.stock.get(substance, 0) < qty_needed * quantity:
-                raise ValueError(f"Stock insuffisant pour {substance}")
+            if qty_needed == 0:
+                continue
+            max_units = self.stock.get(substance, 0) / qty_needed
+            max_possible = min(max_possible, max_units)
+
+        qty_to_make = int(min(quantity, max_possible))
+
+        if qty_to_make == 0:
+            raise ValueError(f"Stock insuffisant pour fabriquer {product}")
 
         for qty_needed, substance in self.reactions[product]:
-            self.stock[substance] -= qty_needed * quantity
+            self.stock[substance] -= qty_needed * qty_to_make
 
         if product not in self.stock:
             self.stock[product] = 0.0
-        self.stock[product] += quantity
+        self.stock[product] += qty_to_make
 
-        return quantity
+        return qty_to_make
+
 
 
     
