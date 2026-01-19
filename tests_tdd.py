@@ -108,6 +108,20 @@ class TestLaboratory(unittest.TestCase):
         self.assertEqual(substances_laboratoire.getQuantity("pate"), 1)
 
 
+    def test_make_parametre_quantity(self):
+        substances = ["farine", "sucre", "beurre"]
+        reactions = {"pate": [(200, "farine"), (100, "sucre"), (50, "beurre")]}
+        substances_laboratoire = Laboratory(substances, reactions)
+
+        substances_laboratoire.add("farine", 500)
+        substances_laboratoire.add("sucre", 200)
+        substances_laboratoire.add("beurre", 100)
+
+        qty_produite = substances_laboratoire.make("pate", 2)
+
+        self.assertEqual(qty_produite, 2)
+        self.assertEqual(substances_laboratoire.getQuantity("pate"), 2)
+
 
 if __name__ == '__main__':
     unittest.main()
