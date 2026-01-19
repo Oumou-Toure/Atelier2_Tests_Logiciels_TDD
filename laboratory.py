@@ -47,4 +47,7 @@ class Laboratory:
         if product not in self.reactions:
             raise ValueError(f"La réaction pour {product} est inconnue.")
         
-       
+        for qty_needed, substance in self.reactions[product]:
+            if self.stock.get(substance, 0) < qty_needed:
+                raise ValueError(f"Stock insuffisant pour {substance}")
+
