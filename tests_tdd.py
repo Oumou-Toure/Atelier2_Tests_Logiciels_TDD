@@ -76,8 +76,13 @@ class TestLaboratory(unittest.TestCase):
 
         with self.assertRaises(ValueError):
             Laboratory(substances, reactions)
+            
+            
+    def test_initialisation_laboratoire_sans_substances(self):
+        with self.assertRaises(ValueError):
+            Laboratory([])
 
 
-        
+
 if __name__ == '__main__':
     unittest.main()

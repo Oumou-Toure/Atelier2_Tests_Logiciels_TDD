@@ -12,7 +12,8 @@ class Laboratory:
 
         for product in self.reactions:
             self.stock[product] = 0.0
-        
+
+
     def getQuantity(self, substance): 
         
         if not isinstance(substance, str):
@@ -36,3 +37,5 @@ class Laboratory:
             raise TypeError("La quantité doit être un nombre")
     
         self.stock[substance] += quantity
+        
+    
