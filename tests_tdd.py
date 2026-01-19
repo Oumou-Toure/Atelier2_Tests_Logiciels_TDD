@@ -137,8 +137,29 @@ class TestLaboratory(unittest.TestCase):
 
         self.assertEqual(qty_produite, 1)
         self.assertEqual(substances_laboratoire.getQuantity("pate"), 1)
+        
+        
+    def test_make_produit_a_partir_de_produit(self):
+        substances = ["farine", "sucre", "beurre"]
+        reactions = {
+            "pate": [(200, "farine"), (100, "sucre"), (50, "beurre")],
+            "gateau": [(1, "pate"), (50, "sucre")]
+        }
 
+        substances_laboratoire= Laboratory(substances, reactions)
 
+        substances_laboratoire.add("farine", 500)
+        substances_laboratoire.add("sucre", 300)
+        substances_laboratoire.add("beurre", 200)
+
+        substances_laboratoire.make("pate", 2)
+
+        substances_laboratoire.make("gateau", 1)
+
+        self.assertEqual(substances_laboratoire.getQuantity("pate"), 1)
+        self.assertEqual(substances_laboratoire.getQuantity("gateau"), 1)
+
+        
 
 if __name__ == '__main__':
     unittest.main()
